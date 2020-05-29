@@ -1,0 +1,68 @@
+#!/bin/python3
+########################################################################################
+#  https://www.hackerrank.com/contests/target-codevita-2/challenges/electronics-shop   #
+########################################################################################
+import os
+import sys
+
+#
+# Complete the getMoneySpent function below.
+#
+def getMoneySpent(keyboards, drives, b):
+    # Function to find the maximum amount spent on purchase of keyboard and usb drive together
+    
+    #Initialize a variable sum to take the maximum amount for both purchases
+    sum=-1
+    
+    
+    #place a for loop to check a value of keyboard unit price 
+    for i in keyboards:
+        #declare a temp variable to store amount of keyboard and drive of each possible combination
+        temp=0
+        
+        #nested for loop to check the unit price of each usb drive
+        for j in drives:
+            temp  = i + j       #price of ith keyboard and jth drive
+            
+            # check for sum is maximum and less than 'b' amount to be spent
+            if temp > sum and temp <= b:
+                sum = temp
+                k= i
+                d= j   
+    # return the sum or -1 if no such combination exists.
+    return sum
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    
+    # Enter the three integer values as money to spend, no. of keyboard units, and no. of usb units
+    bnm = input().split()
+
+    # Variable 'b' carries the money amount to be spent
+    b = int(bnm[0])
+
+    # Variable 'n' carries the number of keyboard units
+    n = int(bnm[1])
+
+    # Variable 'm' carries the number of usb units
+    m = int(bnm[2])
+
+    # unit price of the keyboard units are stored in form of list
+    keyboards = list(map(int, input().rstrip().split()))
+
+    # unit price of the usb units are stored in form of list
+    drives = list(map(int, input().rstrip().split()))
+
+    #
+    # The maximum amount of money she can spend on a keyboard and USB drive, or -1 if she can't purchase both items
+    #
+
+    moneySpent = getMoneySpent(keyboards, drives, b)
+
+    fptr.write(str(moneySpent) + '\n')
+
+    fptr.close()
+
+########################################################################################
+#  https://www.hackerrank.com/contests/target-codevita-2/challenges/electronics-shop   #
+########################################################################################
