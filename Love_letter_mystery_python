@@ -1,0 +1,67 @@
+#!/bin/python3
+
+############################################################################################
+# https://www.hackerrank.com/contests/target-codevita-2/challenges/the-love-letter-mystery #
+############################################################################################
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the theLoveLetterMystery function below.
+def theLoveLetterMystery(s):
+    
+    #Call a len() function to check the number of characters present in a string, store it in 'n'
+    n= len(s)
+    
+    #check for the length of string is even or odd, and store it in variable 'f'
+    #take the value of 'f' as half of the string to check for the palinedrome
+    # Half of the string is taken, as the first element is to be checked with last element
+    # ith element to be checked with length - ith element
+    
+    if n%2 ==0:
+        f= int(n/2)
+    else:
+        f= int(n/2 +1)
+    
+    # Temporary variable 'count' is taken and initialize by zero
+    count = 0
+    
+    # check for the ith element with length - ith element till the string completes.
+    # in python, ascii is not used; ord() is used to convert 'char to int'
+    # check for ord(i) and ord(len -i); if equal then skip
+    # check for ord(i) and ord(len -i); if not equal, then difference need to added in count variable
+    for i in range(f):
+        df=ord(s[i]) - ord(s[n-i-1])
+        if df==0:
+            continue
+        else:
+            count = count + abs(df)
+    
+    #the function will return the number of modifications required, if any
+    return count
+            
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    # Enter the number of strings you want to check in variable 'q'
+    q = int(input())
+
+    # Call a for loop to take a string one by one to check for palinedrome
+    for q_itr in range(q):
+        #Input a string to check 
+        s = input()
+
+        # Call a function theLoveLetterMystery() with an argument string as 's'
+        result = theLoveLetterMystery(s)
+
+        #the function will return the number of modifications required, if any
+        fptr.write(str(result) + '\n')
+
+    fptr.close()
+
+############################################################################################
+# https://www.hackerrank.com/contests/target-codevita-2/challenges/the-love-letter-mystery #
+############################################################################################
