@@ -1,0 +1,70 @@
+#!/bin/python3
+
+#####################################################################################
+# https://www.hackerrank.com/contests/target-codevita-2/challenges/cats-and-a-mouse #
+#####################################################################################
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the catAndMouse function below.
+# Creation a function catAndMouse with three arguments i.e. position of Cat A, Cat B and Mouse C
+def catAndMouse(x, y, z):
+    
+    # Check the distance between s1 as cat A and mouse C; and s2 as distance between cat B and mouse C 
+    # find the minimum distance based on the s1 and s2
+    # the cat who is at minimum distance will reach first and return its value
+    # if distance s1 and s2 are same, mouse will run i.e. return Mouse C
+    
+    # Distance between Cat A and Mouse C
+    s1 = abs(x-z)
+    
+    # Distance between Cat B and Mouse C
+    s2 = abs(y-z)
+    
+    # if distance of Cat A is more than Cat B, means Cat B will catch the Mouse
+    if s1 > s2:
+        return "Cat B"
+    
+    # if distance of Cat A is less than Cat B, means Cat A will catch the Mouse
+    elif s1 < s2:
+        return "Cat A"
+    else:       # if distance s1 and s2 are same, mouse will run i.e. return Mouse C
+        return "Mouse C"
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    # Enter the number of scenarios to be checked as queries 'q'
+    q = int(input())
+
+    # Input the sequence of the Cat A, Cat B and Mouse C in order using for loop
+    for q_itr in range(q):
+        
+        # Input the sequence of the Cat A, Cat B and Mouse C in order
+        xyz = input().split()
+
+        # x carries the position of Cat A
+        x = int(xyz[0])
+
+        # y carries the position of Cat B
+        y = int(xyz[1])
+
+        # z carries the position of Mouse C
+        z = int(xyz[2])
+
+        # Calling of the function catAndMouse with three arguments i.e. position of Cat A, Cat B and Mouse C
+        result = catAndMouse(x, y, z)
+
+        #Fucntion will return a value in variable 'result'
+        fptr.write(result + '\n')
+
+    fptr.close()
+
+    
+#####################################################################################
+# https://www.hackerrank.com/contests/target-codevita-2/challenges/cats-and-a-mouse #
+#####################################################################################
